@@ -124,10 +124,12 @@ final class boighor_Elementor_Extention {
 
 		// Include Widget files
 		require_once( __DIR__ . '/widgets/boighor-slider.php' );
+		require_once( __DIR__ . '/widgets/boighor-best-sell-products.php' );
 		require_once( __DIR__ . '/widgets/boighor-allproducts.php' );
 
 		// Register widget
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Main_Slider_section() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \boighor_best_sell_product_section() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Allproducts_section() );
 	}
 
