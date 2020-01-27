@@ -123,9 +123,11 @@ final class boighor_Elementor_Extention {
 	public function init_widgets() {
 
 		// Include Widget files
+		require_once( __DIR__ . '/widgets/boighor-slider.php' );
 		require_once( __DIR__ . '/widgets/boighor-allproducts.php' );
 
 		// Register widget
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Main_Slider_section() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Allproducts_section() );
 	}
 

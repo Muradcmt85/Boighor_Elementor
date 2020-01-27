@@ -1,13 +1,13 @@
 <?php 
 
-class Allproducts_section extends \Elementor\Widget_Base {
+class Main_Slider_section extends \Elementor\Widget_Base {
 
 	public function get_name() {
-		return 'boighor_All_Product';
+		return 'boighor_slider';
 	}
 
 	public function get_title() {
-		return __( 'Boighor All Products', 'boighor' );
+		return __( 'Boighor Main Slider', 'boighor' );
 	}
 
 	public function get_icon() {
@@ -29,63 +29,68 @@ class Allproducts_section extends \Elementor\Widget_Base {
 		);
 
       
-        $this->add_control(
-			'products_title',
-			[
-				'label' => __( 'All Products Title', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('All <span class="color--theme">Products</span>')
-			]
-
-        );
-
-
-        $this->add_control(
-			'Product_description',
-			[
-				'label' => __( 'Product Description', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __('Enter Product description')
-			]
-
-        );
-
-        
-    
-
-       
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
-			'product_hot_sell',
+			'slider_img',
 			[
-				'label' => __( 'Best Sell', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Best Sell')
+				'label' => __( 'Slider Image', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => get_template_directory_uri().'/assets/images/slider/bg1.jpg',
+				],
 			]
         );
 
         $repeater->add_control(
-			'product_new_price',
+			'slider_title_one',
 			[
-				'label' => __( 'New Price', 'boighor' ),
+				'label' => __( 'Slider Title One', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('New Price')
+				'default' => __('Buy <span>your </span>')
 			]
         );
 
         $repeater->add_control(
-			'product_old_price',
+			'slider_title_two',
 			[
-				'label' => __( 'Old Price', 'boighor' ),
+				'label' => __( 'Slider Title Two', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Old Price')
+				'default' => __('favourite <span>Book </span>')
 			]
         );
+
+        $repeater->add_control(
+			'slider_title_three',
+			[
+				'label' => __( 'Slider Title Three', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('from <span>Here </span>')
+			]
+        );
+
+        $repeater->add_control(
+			'slider_link',
+			[
+				'label' => __( 'Slider Link Here', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('https://wpcamel.com')
+			]
+        );
+
+        $repeater->add_control(
+			'slider_button_text',
+			[
+				'label' => __( 'Slider Text Here', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('Shop Here')
+			]
+        );
+
 
         
 		$this->add_control(
-			'products_list',
+			'Main_slider',
 			[
 				'label' => __( 'All Proudcts List', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::REPEATER,
@@ -102,109 +107,29 @@ class Allproducts_section extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display(); ?>
 
-        
-        
-        <!-- Start Best Seller Area -->
-		<section class="wn__bestseller__area bg--white pt--80  pb--30">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="section__title text-center">
-							<h2 class="title__be--2"><?php echo $settings['products_title']?></h2>
-							<p><?php echo $settings['Product_description']?></p>
-						</div>
-					</div>
-				</div>
-				<div class="row mt--50">
-					<div class="col-md-12 col-lg-12 col-sm-12">
-						<div class="product__nav nav justify-content-center" role="tablist">
-                            <a class="nav-item nav-link active" data-toggle="tab" href="#nav-all" role="tab">ALL</a>
-							<?php 
-								$terms = get_terms( 'boighor_category', array(
-									'hide_empty' => false,
-								) );
-								foreach ($terms as $term) { ?>
-										<a class="nav-item nav-link" data-toggle="tab" href="#<?php echo $term->slug; ?>" role="tab"><?php echo $term->name; ?></a>
-							<?php } ?>
-                        </div>
-					</div>
-				</div>
-				<div class="tab__container mt--60">
-					<!-- Start Single Tab Content -->
-					<div class="row single__tab tab-pane fade show active" id="nav-all" role="tabpanel">
-						<div class="product__indicator--4 arrows_style owl-carousel owl-theme">
-							<div class="single__product">
-								<!-- Start Single Product -->
-								<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-									<?php 
-
-										$args = array(
-											'post_type' => 'allporduct',
-											'showposts' => 8,
-										);
-										// the query
-										$the_query = new WP_Query( $args ); ?>
-
-										<?php if ( $the_query->have_posts() ) : ?>
-											<?php while ( $the_query->have_posts() ) : $the_query->the_post();?>
-									<div class="product product__style--3 <?php 
-                        $term_lists = wp_get_post_terms($post->ID, 'boighor_category');
-                        foreach ($term_lists as $term):
-                            echo $term->slug.' ';
-                        endforeach; ?>">
-
-										<div class="product__thumb">
-											<a class="first__img" href="<?php echo get_the_permalink();?>"><img src="<?php echo get_the_post_thumbnail_url();?>" alt="product image"></a>
-											<a class="second__img animation1" href="<?php echo get_the_permalink();?>"><img src="<?php echo get_the_post_thumbnail_url();?>" alt="product image"></a>
-                                            
-                                        <?php foreach( $settings['products_list'] as $item) {?>
-											<div class="hot__box">
-												<span class="hot-label"><?php echo $item['product_hot_sell']?></span>
-											</div>
-										</div>
-										<div class="product__content content--center">
-											<h4><a href="<?php echo get_the_permalink();?>"><?php the_title();?></a></h4>
-											<ul class="prize d-flex">
-												<li><?php echo '$'. $item['product_new_price']?></li>
-												<li class="old_prize"><?php echo '$'. $item['product_old_price']?></li>
-											</ul>
-											<div class="action">
-												<div class="actions_inner">
-													<ul class="add_to_links">
-														<li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
-														<li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
-														<li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
-														<li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
-													</ul>
-												</div>
-											</div>
-											<div class="product__hover--content">
-												<ul class="rating d-flex">
-													<li class="on"><i class="fa fa-star-o"></i></li>
-													<li class="on"><i class="fa fa-star-o"></i></li>
-													<li class="on"><i class="fa fa-star-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<?php } endwhile;  ?>
-										<?php wp_reset_postdata(); ?>
-									
-									<?php else : ?>
-										<p><?php _e( 'Sorry, No products found.' ); ?></p>
-									<?php endif; ?>
-								</div>
-								<!-- Start Single Product -->
-							</div>
-						</div>
-					</div>
-					<!-- End Single Tab Content -->
-				</div>
-			</div>
-		</section>
-		<!-- Start BEst Seller Area -->
+          <!-- Start Slider area -->
+		  <div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
+			<!-- Start Single Slide -->
+			<?php foreach($settings['Main_slider'] as $item) {?>
+	        <div class="slide animation__style10 bg-image--1 fullscreen align__center--left" style="background-image: url(<?php echo $item['slider_img']['url']?>); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+	            <div class="container">
+	            	<div class="row">
+	            		<div class="col-lg-12">
+	            			<div class="slider__content">
+		            			<div class="contentbox">
+		            				<h2><?php echo $item['slider_title_one']?></h2>
+		            				<h2><?php echo $item['slider_title_two']?></h2>
+		            				<h2><?php echo $item['slider_title_three']?></h2>
+				                   	<a class="shopbtn" href="<?php echo $item['slider_link']?>"><?php echo $item['slider_button_text']?></a>
+		            			</div>
+	            			</div>
+	            		</div>
+	            	</div>
+	            </div>
+            </div>
+			<!-- End Single Slide -->
+			<?php }?>
+        </div>
 
   <?php }
 
