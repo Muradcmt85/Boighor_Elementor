@@ -57,7 +57,7 @@ class newsletter_section extends \Elementor\Widget_Base {
 			[
 				'label' => __( 'Product Description', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __('Enter Product description')
+				'default' => __('Enter Newsletter description')
 			]
 
         );
