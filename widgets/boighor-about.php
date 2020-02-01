@@ -56,7 +56,7 @@ class boighor_about extends \Elementor\Widget_Base {
 			'about_description_top',
 			[
 				'label' => __( 'About Description Top', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => \Elementor\Controls_Manager::WYSIWYG ,
 				'default' => __('The right people for your project')
 			]
 
@@ -74,8 +74,164 @@ class boighor_about extends \Elementor\Widget_Base {
 
 
        
+      
+		// Skill section repeater are here
+
+        $repeater = new \Elementor\Repeater();
+
+        $repeater->add_control(
+			'about_skill_title',
+			[
+				'label' => __( 'About Skill Title', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('Enter Skill Title')
+			]
+		);
+		
+        $repeater->add_control(
+			'about_skill_width',
+			[
+				'label' => __( 'About Skill Title', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('90')
+			]
+        );
+
 
         
+		$this->add_control(
+			'Skill_title',
+			[
+				'label' => __( 'All About Skills', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'title_field' => 'About Skills',
+			]
+		);
+
+
+
+		$this->add_control(
+			'book_title1',
+			[
+				'label' => __( 'Skill right section Title1', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('Buy Book')
+			]
+		);
+		
+		$this->add_control(
+			'book_title2',
+			[
+				'label' => __( 'About Skill right section Title1', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('DIFFERENT KNOWLEDGE')
+			]
+        );
+		
+		$this->add_control(
+			'book_description',
+			[
+				'label' => __( 'About Skill right section description', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::WYSIWYG ,
+				'default' => __('Enter description here')
+			]
+        );
+		
+		$this->add_control(
+			'book_address_title',
+			[
+				'label' => __( 'About Skill right section Address Title', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('Enter Address title here')
+			]
+		);
+		
+		$this->add_control(
+			'book_address',
+			[
+				'label' => __( 'About Skill right section Address', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'default' => __('Enter Address here')
+			]
+		);
+		
+
+		//Team section are here
+		 
+		$this->add_control(
+			'about_team_title',
+			[
+				'label' => __( 'About Team Title', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'default' => __('Team Title')
+			]
+        );
+        
+		$this->add_control(
+			'about_team_description',
+			[
+				'label' => __( 'About Team Description', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'default' => __('Team Desciption')
+			]
+        );
+
+		
+		// Team section repeater are here
+
+		$repeater->add_control(
+			'about_team_image',
+			[
+				'label' => __( 'About Team Image', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'about_team_member_name',
+			[
+				'label' => __( 'Team Member Name', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('Enter Member Name here')
+			]
+		);
+		
+
+		$repeater->add_control(
+			'about_team_member_designation',
+			[
+				'label' => __( 'Team Member Designation', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('Enter Member Designation here')
+			]
+		);
+		
+
+		$repeater->add_control(
+			'about_team_member_social_icon',
+			[
+				'label' => __( 'Member Social Profile', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::WYSIWYG,
+				'default' => __('Enter Member Social icons here')
+			]
+		);
+		
+
+		     
+		$this->add_control(
+			'team_section',
+			[
+				'label' => __( 'All Team Members', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'title_field' => 'About Team Members',
+			]
+		);
+
 
 		$this->end_controls_section();
 
@@ -117,52 +273,27 @@ class boighor_about extends \Elementor\Widget_Base {
         				<div class="content text-left text_style--2">
     					    <h2><?php echo $settings['about_skill_title']?></h2>
     					    <div class="skill-container">
-    					        <!-- Start single skill -->
+								<!-- Start single skill -->
+								<?php foreach($settings['Skill_title'] as $item) {?>
     					        <div class="single-skill">
-    					            <p>Customer Favorites</p>
+    					            <p><?php echo $item['about_skill_title']?></p>
     					            <div class="progress">
-    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%"><span class="pen-lable"></span>
+    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $item['about_skill_width']?>%"><span class="pen-lable"></span>
     					                </div>
     					            </div>
-    					        </div>
-    					        <!-- End single skill -->
-    					        <!-- Start single skill -->
-    					        <div class="single-skill">
-    					            <p>Popular Authors</p>
-    					            <div class="progress">
-    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width:95%"><span class="pen-lable"></span>
-    					                </div>
-    					            </div>
-    					        </div>
-    					        <!-- End single skill -->
-    					        <!-- Start single skill -->
-    					        <div class="single-skill">
-    					            <p>Bestselling Series</p>
-    					            <div class="progress">
-    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width:93%"><span class="pen-lable"></span>
-    					                </div>
-    					            </div>
-    					        </div>
-    					        <!-- End single skill -->
-    					        <!-- Start single skill -->
-    					        <div class="single-skill">
-    					            <p>Bargain Books</p>
-    					            <div class="progress">
-    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%"><span class="pen-lable"></span>
-    					                </div>
-    					            </div>
-    					        </div>
+								</div>
+								<?php } ?>
     					        <!-- End single skill -->
     					    </div>
         				</div>
         			</div>
         			<div class="col-lg-6 col-sm-12 col-12">
         				<div class="content">
-        					<h3>Buy Book</h3>
-        					<h2>Different Knowledge</h2>
-        					<p class="mt--20 mb--20">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
-        					<strong>London Address</strong>
-        					<p>34 Parer Place via Musk Avenue Kelvin Grove, QLD, 4059</p>
+        					<h3><?php echo $settings['book_title1']?></h3>
+        					<h2><?php echo $settings['book_title2']?></h2>
+        					<p class="mt--20 mb--20"><?php echo $settings['book_description']?></p>
+        					<strong><?php echo $settings['book_address_title']?></strong>
+        					<p><?php echo $settings['book_address']?></p>
         				</div>
         			</div>
         		</div>
@@ -175,71 +306,29 @@ class boighor_about extends \Elementor\Widget_Base {
         		<div class="row">
         			<div class="col-lg-12">
         				<div class="section__title--3 text-center">
-        					<h2>Meet our team of experts</h2>
-        					<p>the right people for your project</p>
+        					<h2><?php echo $settings['about_team_title']?></h2>
+        					<p><?php echo $settings['about_team_description']?></p>
         				</div>
         			</div>
         		</div>
         		<div class="row">
-        			<!-- Start Single Team -->
+					<!-- Start Single Team -->
+					<?php foreach($settings['team_section'] as $team) {?>
         			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
         				<div class="wn__team">
         					<div class="thumb">
-        						<img src="images/about/team/1.jpg" alt="Team images">
+        						<img src="<?php echo $team['about_team_image']['url']?>" alt="Team images">
         					</div>
         					<div class="content text-center">
-        						<h4>JOHN SMITH</h4>
-        						<p>Manager</p>
+        						<h4><?php echo $team['about_team_member_name']?></h4>
+        						<p><?php echo $team['about_team_member_designation']?></p>
         						<ul class="team__social__net">
-        							<li><a href="#"><i class="icon-social-twitter icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-tumblr icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-facebook icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-linkedin icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-pinterest icons"></i></a></li>
+        							<li><?php echo $team['about_team_member_social_icon']?></li>
         						</ul>
         					</div>
         				</div>
-        			</div>
-        			<!-- End Single Team -->
-        			<!-- Start Single Team -->
-        			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
-        				<div class="wn__team">
-        					<div class="thumb">
-        						<img src="images/about/team/2.jpg" alt="Team images">
-        					</div>
-        					<div class="content text-center">
-        						<h4>ALICE KIM</h4>
-        						<p>Co-Founder</p>
-        						<ul class="team__social__net">
-        							<li><a href="#"><i class="icon-social-twitter icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-tumblr icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-facebook icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-linkedin icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-pinterest icons"></i></a></li>
-        						</ul>
-        					</div>
-        				</div>
-        			</div>
-        			<!-- End Single Team -->
-        			<!-- Start Single Team -->
-        			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
-        				<div class="wn__team">
-        					<div class="thumb">
-        						<img src="images/about/team/3.jpg" alt="Team images">
-        					</div>
-        					<div class="content text-center">
-        						<h4>VICTORIA DOE</h4>
-        						<p>Marketer</p>
-        						<ul class="team__social__net">
-        							<li><a href="#"><i class="icon-social-twitter icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-tumblr icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-facebook icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-linkedin icons"></i></a></li>
-        							<li><a href="#"><i class="icon-social-pinterest icons"></i></a></li>
-        						</ul>
-        					</div>
-        				</div>
-        			</div>
+					</div>
+					<?php } ?>
         			<!-- End Single Team -->
         		</div>
         	</div>
