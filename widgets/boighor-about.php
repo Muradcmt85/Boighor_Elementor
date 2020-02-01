@@ -3,7 +3,7 @@
 class boighor_about extends \Elementor\Widget_Base {
 
 	public function get_name() {
-		return 'About_page';
+		return 'boighor_aboutUs';
 	}
 
 	public function get_title() {
@@ -32,7 +32,7 @@ class boighor_about extends \Elementor\Widget_Base {
         $this->add_control(
 			'boighor_about_banner_image',
 			[
-				'label' => __( 'About Us Background Image', 'boighor' ),
+				'label' => __( 'About Us Banner Image', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => get_template_directory_uri().'/assets/images/slider/bg1.jpg',
@@ -41,69 +41,39 @@ class boighor_about extends \Elementor\Widget_Base {
         );
 
       
-      
         $this->add_control(
-			'about_skill_title',
+			'about_title_top',
 			[
-				'label' => __( 'About Skill Title', 'boighor' ),
+				'label' => __( 'About Title Top', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => __('OUR PROCESS SKILL OF HIGH')
 			]
 
         );
 
-
+      
         $this->add_control(
-			'about_skill_description',
+			'about_description_top',
 			[
-				'label' => __( 'About Skill Description', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __('Enter About Skill description')
-			]
-
-        );
-
-
-
-
-        
-       
-		$repeater = new \Elementor\Repeater();
-		
-
-	
-
-        $repeater->add_control(
-			'skill_item',
-			[
-				'label' => __( 'Skill Item', 'boighor' ),
+				'label' => __( 'About Description Top', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Add Skill Item')
+				'default' => __('The right people for your project')
 			]
+
+        );
+      
+        $this->add_control(
+			'about_skill_title',
+			[
+				'label' => __( 'About Skill Title', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('Enter Skill Title')
+			]
+
         );
 
 
-        
-		$repeater->add_control(
-			'about_skill_list',
-			[
-				'label' => __( 'All Skill List', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
-				'title_field' => 'Skill List Item',
-			]
-		);
-        
-		$this->add_control(
-			'about_skill_list',
-			[
-				'label' => __( 'Add Skill Percent', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
-				'title_field' => '90',
-			]
-		);
-
+       
 
         
 
@@ -115,7 +85,8 @@ class boighor_about extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display(); ?>
 
-<div class="ht__bradcaump__area bg-image--6" style="background-image: url(<?php echo $settings['boighor_about_banner_image']['url']?>">
+		        <!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--6" style="background-image: url(<?php echo $settings['boighor_about_banner_image']['url']?>);  background-repeat: no-repeat; background-size: cover; background-position: center center;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -129,34 +100,59 @@ class boighor_about extends \Elementor\Widget_Base {
                 </div>
             </div>
         </div>
-    <!-- End Bradcaump area -->
+        <!-- End Bradcaump area -->
         <!-- Start About Area -->
         <div class="page-about about_area bg--white section-padding--lg">
         	<div class="container">
 				<div class="row">
         			<div class="col-lg-12">
         				<div class="section__title--3 text-center pb--30">
-        					<h2><?php echo $settings['about_skill_title']?></h2>
-        					<p><?php echo $settings['about_skill_description']?></p>
+        					<h2><?php echo $settings['about_title_top']?></h2>
+        					<p><?php echo $settings['about_description_top']?></p>
         				</div>
         			</div>
         		</div>
         		<div class="row align-items-center">
 					<div class="col-lg-6 col-sm-12 col-12">
         				<div class="content text-left text_style--2">
-    					    <h2>we have skills to show</h2>
+    					    <h2><?php echo $settings['about_skill_title']?></h2>
     					    <div class="skill-container">
-                                <!-- Start single skill -->
-                                <?php foreach($settings['about_skill_list'] as $skill_item) {?>
+    					        <!-- Start single skill -->
     					        <div class="single-skill">
-    					            <p><?php echo $skill_item['skill_item'];?></p>
+    					            <p>Customer Favorites</p>
     					            <div class="progress">
-    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $skill_item['skill-width']?>%"><span class="pen-lable"></span>
+    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%"><span class="pen-lable"></span>
     					                </div>
     					            </div>
     					        </div>
-                                <!-- End single skill -->
-                            <?php } ?>
+    					        <!-- End single skill -->
+    					        <!-- Start single skill -->
+    					        <div class="single-skill">
+    					            <p>Popular Authors</p>
+    					            <div class="progress">
+    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width:95%"><span class="pen-lable"></span>
+    					                </div>
+    					            </div>
+    					        </div>
+    					        <!-- End single skill -->
+    					        <!-- Start single skill -->
+    					        <div class="single-skill">
+    					            <p>Bestselling Series</p>
+    					            <div class="progress">
+    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width:93%"><span class="pen-lable"></span>
+    					                </div>
+    					            </div>
+    					        </div>
+    					        <!-- End single skill -->
+    					        <!-- Start single skill -->
+    					        <div class="single-skill">
+    					            <p>Bargain Books</p>
+    					            <div class="progress">
+    					                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".5s" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%"><span class="pen-lable"></span>
+    					                </div>
+    					            </div>
+    					        </div>
+    					        <!-- End single skill -->
     					    </div>
         				</div>
         			</div>

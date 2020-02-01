@@ -146,7 +146,7 @@ class boighor_contact extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display(); ?>
 
-<div class="ht__bradcaump__area bg-image--6" style="background-image: url(<?php echo $settings['boighor_contact_banner_image']['url']?>">
+<div class="ht__bradcaump__area bg-image--6" style="background-image: url(<?php echo $settings['boighor_contact_banner_image']['url']?>);  background-repeat: no-repeat; background-size: cover; background-position: center center;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
