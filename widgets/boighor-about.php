@@ -91,7 +91,7 @@ class boighor_about extends \Elementor\Widget_Base {
         $repeater->add_control(
 			'about_skill_width',
 			[
-				'label' => __( 'About Skill Title', 'boighor' ),
+				'label' => __( 'About Skill width', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => __('90')
 			]
@@ -180,6 +180,8 @@ class boighor_about extends \Elementor\Widget_Base {
 		
 		// Team section repeater are here
 
+		$repeater = new \Elementor\Repeater();
+		
 		$repeater->add_control(
 			'about_team_image',
 			[
@@ -215,7 +217,7 @@ class boighor_about extends \Elementor\Widget_Base {
 			'about_team_member_social_icon',
 			[
 				'label' => __( 'Member Social Profile', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
+				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => __('Enter Member Social icons here')
 			]
 		);
