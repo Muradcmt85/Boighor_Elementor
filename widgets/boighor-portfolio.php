@@ -125,18 +125,18 @@ class portfolio_section extends \Elementor\Widget_Base {
 	
 						<div class="portfolio">
 							<div class="thumb">
-								<a href="#">
+								<a href="<?php echo get_the_permalink();?>">
 									<img src="<?php echo get_the_post_thumbnail_url();?>" alt="portfolio images">
 								</a>
 								<div class="search">
 									<a href="<?php echo get_the_post_thumbnail_url();?>" data-lightbox="grportimg" data-title="My caption"><i class="zmdi zmdi-search"></i></a>
 								</div>
 								<div class="link">
-									<a href="#"><i class="fa fa-link"></i></a>
+									<a href="<?php echo get_the_permalink();?>"><i class="fa fa-link"></i></a>
 								</div>
 							</div>
 							<div class="content">
-								<h6><a href="#"><?php the_title()?></a></h6>
+								<h6><a href="<?php echo get_the_permalink();?>"><?php the_title()?></a></h6>
 								<p><?php echo $settings['portfolio_button']?></p>
 							</div>
 						</div>
