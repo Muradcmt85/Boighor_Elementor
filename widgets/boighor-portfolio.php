@@ -28,71 +28,33 @@ class portfolio_section extends \Elementor\Widget_Base {
 			]
 		);
 
-      
-        $this->add_control(
-			'products_title',
+	  
+		$this->add_control(
+			'boighor_portfolio_banner_image',
 			[
-				'label' => __( 'All Products Title', 'boighor' ),
+				'label' => __( 'About Us Banner Image', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => get_template_directory_uri().'/assets/images/slider/bg1.jpg',
+				],
+			]
+        );
+
+        $this->add_control(
+			'portfolio_button',
+			[
+				'label' => __( 'Button Text', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('All <span class="color--theme">Products</span>')
+				'default' => __('Read More')
 			]
 
         );
 
-
-        $this->add_control(
-			'Product_description',
-			[
-				'label' => __( 'Product Description', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __('Enter Product description')
-			]
-
-        );
 
         
     
 
        
-        $repeater = new \Elementor\Repeater();
-
-        $repeater->add_control(
-			'product_hot_sell',
-			[
-				'label' => __( 'Best Sell', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Best Sell')
-			]
-        );
-
-        $repeater->add_control(
-			'product_new_price',
-			[
-				'label' => __( 'New Price', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('New Price')
-			]
-        );
-
-        $repeater->add_control(
-			'product_old_price',
-			[
-				'label' => __( 'Old Price', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Old Price')
-			]
-        );
-
-        
-		$this->add_control(
-			'products_list',
-			[
-				'label' => __( 'All Proudcts List', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
-				'title_field' => 'Proudcts List Item',
-			]
-		);
 
 		$this->end_controls_section();
 
@@ -104,7 +66,7 @@ class portfolio_section extends \Elementor\Widget_Base {
 
         
                 <!-- Start Bradcaump area -->
-		<div class="ht__bradcaump__area bg-image--6" style="background-image: url(<?php echo $settings['boighor_about_banner_image']['url']?>);  background-repeat: no-repeat; background-size: cover; background-position: center center;">
+		<div class="ht__bradcaump__area bg-image--6" style="background-image: url(<?php echo $settings['boighor_portfolio_banner_image']['url']?>);  background-repeat: no-repeat; background-size: cover; background-position: center center;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -126,35 +88,65 @@ class portfolio_section extends \Elementor\Widget_Base {
 					<div class="col-lg-12">
 						<div class="gallery__menu">
                             <button data-filter="*" class="is-checked">Filter - All</button>
-                            <button data-filter=".cat--1">Company News</button>
-                            <button data-filter=".cat--2">Computers</button>
-                            <button data-filter=".cat--3">General News</button>
-                            <button data-filter=".cat--4">Hipster Content</button>
-                            <button data-filter=".cat--5">Just Food</button>
+							<?php 
+								$terms = get_terms( 'portfolio_category', array(
+									'hide_empty' => false,
+								) );
+								// print_r($terms);
+								foreach ($terms as $term) { ?>
+                            <button data-filter=".<?php echo $term->slug; ?>"><?php echo $term->name; ?></button>
+							<?php } ?>
                       	</div>
 					</div>
 				</div>
+				
 				<div class="row masonry__wrap">
+				<?php 
+
+				$args = array(
+					'post_type' => 'portfolio',
+					'showposts' => 12,
+				);
+				// the query
+				$the_query = new WP_Query( $args ); ?>
+
+				<?php if ( $the_query->have_posts() ) : ?>
+					<?php while ( $the_query->have_posts() ) : $the_query->the_post();?>
+				
+				
 					<!-- Start Single Portfolio -->
-					<div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12 gallery__item cat--1">
+					<div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12 gallery__item <?php 
+					$portfolio= wp_list_pluck( get_the_terms( get_the_ID(), 'portfolio_category' ), 'slug');
+					print_r($portfolio);
+					foreach( $portfolio as $term ) {
+						echo $term;
+					  }
+					?> " >
+	
 						<div class="portfolio">
 							<div class="thumb">
-								<a href="portfolio-details.html">
-									<img src="images/portfolio/md-img/1.jpg" alt="portfolio images">
+								<a href="#">
+									<img src="<?php echo get_the_post_thumbnail_url();?>" alt="portfolio images">
 								</a>
 								<div class="search">
-									<a href="images/portfolio/big-2/1.jpg" data-lightbox="grportimg" data-title="My caption"><i class="zmdi zmdi-search"></i></a>
+									<a href="<?php echo get_the_post_thumbnail_url();?>" data-lightbox="grportimg" data-title="My caption"><i class="zmdi zmdi-search"></i></a>
 								</div>
 								<div class="link">
-									<a href="portfolio-details.html"><i class="fa fa-link"></i></a>
+									<a href="#"><i class="fa fa-link"></i></a>
 								</div>
 							</div>
 							<div class="content">
-								<h6><a href="portfolio-details.html">Coffee & Cookie Time</a></h6>
-								<p>road theme</p>
+								<h6><a href="#"><?php the_title()?></a></h6>
+								<p><?php echo $settings['portfolio_button']?></p>
 							</div>
 						</div>
 					</div>
+					<?php endwhile; ?>
+                        <?php wp_reset_postdata(); ?>
+						
+						<?php else : ?>
+							<p><?php _e( 'Sorry, not found portfolio item.' ); ?></p>
+						<?php endif; ?>
 					<!-- End Single Portfolio -->
 				</div>
 			</div>
