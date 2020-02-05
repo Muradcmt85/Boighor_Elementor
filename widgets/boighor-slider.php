@@ -95,7 +95,7 @@ class Main_Slider_section extends \Elementor\Widget_Base {
 				'label' => __( 'All Proudcts List', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
-				'title_field' => 'Proudcts List Item',
+				'title_field' => 'Slider Item',
 			]
 		);
 

@@ -139,8 +139,8 @@ class Allproducts_section extends \Elementor\Widget_Base {
 									<?php 
 
 										$args = array(
-											'post_type' => 'allporduct',
-											'showposts' => 8,
+											'post_type' => 'Product',
+											'posts_per_page' => 12,
 										);
 										// the query
 										$the_query = new WP_Query( $args ); ?>
