@@ -214,11 +214,42 @@ class boighor_about extends \Elementor\Widget_Base {
 		
 
 		$repeater->add_control(
-			'about_team_member_social_icon',
+			'about_team_member_social_icon1',
 			[
 				'label' => __( 'Member Social Profile', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Enter Member Social icons here')
+				'default' => __('<a href="#"><i class="icon-social-facebook icons"></i></a>')
+			]
+		);
+		
+
+		$repeater->add_control(
+			'about_team_member_social_icon2',
+			[
+				'label' => __( 'Member Social Profile', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('<a href="#"><i class="icon-social-facebook icons"></i></a>')
+			]
+		);
+		
+
+		$repeater->add_control(
+			'about_team_member_social_icon3',
+			[
+				'label' => __( 'Member Social Profile', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('<a href="#"><i class="icon-social-facebook icons"></i></a>')
+			]
+		);
+		
+		
+
+		$repeater->add_control(
+			'about_team_member_social_icon4',
+			[
+				'label' => __( 'Member Social Profile', 'boighor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('<a href="#"><i class="icon-social-facebook icons"></i></a>')
 			]
 		);
 		
@@ -325,7 +356,10 @@ class boighor_about extends \Elementor\Widget_Base {
         						<h4><?php echo $team['about_team_member_name']?></h4>
         						<p><?php echo $team['about_team_member_designation']?></p>
         						<ul class="team__social__net">
-        							<li><?php echo $team['about_team_member_social_icon']?></li>
+        							<li><?php echo $team['about_team_member_social_icon1']?></li>
+        							<li><?php echo $team['about_team_member_social_icon2']?></li>
+        							<li><?php echo $team['about_team_member_social_icon3']?></li>
+        							<li><?php echo $team['about_team_member_social_icon4']?></li>
         						</ul>
         					</div>
         				</div>

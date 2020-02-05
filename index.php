@@ -135,6 +135,7 @@ final class boighor_Elementor_Extention {
 		require_once( __DIR__ . '/widgets/boighor-account.php' );
 		require_once( __DIR__ . '/widgets/boighor-cart.php' );
 		require_once( __DIR__ . '/widgets/boighor-faq.php' );
+		require_once( __DIR__ . '/widgets/boighor-team.php' );
 
 		// Register widget
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Main_Slider_section() );
@@ -149,6 +150,7 @@ final class boighor_Elementor_Extention {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \boighor_account() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \boighor_cart() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \boighor_faq() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \boighor_team() );
 	}
 
 }
