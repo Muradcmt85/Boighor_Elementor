@@ -117,7 +117,7 @@ class portfolio_section extends \Elementor\Widget_Base {
 					<!-- Start Single Portfolio -->
 					<div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-12 gallery__item <?php 
 					$portfolio= wp_list_pluck( get_the_terms( get_the_ID(), 'portfolio_category' ), 'slug');
-					print_r($portfolio);
+					// print_r($portfolio);
 					foreach( $portfolio as $term ) {
 						echo $term;
 					  }
