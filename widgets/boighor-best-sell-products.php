@@ -50,83 +50,6 @@ class boighor_best_sell_product_section extends \Elementor\Widget_Base {
 
         );
 
-        
-    
-
-       
-		$repeater = new \Elementor\Repeater();
-		
-		
-        $repeater->add_control(
-			'best_sell_products_img1',
-			[
-				'label' => __( 'Product Image One', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::MEDIA,
-				'default' => [
-					'url' => get_template_directory_uri().'/assets/images/slider/bg1.jpg',
-				],
-			]
-		);
-		
-		
-        $repeater->add_control(
-			'best_sell_products_img2',
-			[
-				'label' => __( 'Product Image Two', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::MEDIA,
-				'default' => [
-					'url' => get_template_directory_uri().'/assets/images/slider/bg1.jpg',
-				],
-			]
-        );
-
-        $repeater->add_control(
-			'product_hot_sell',
-			[
-				'label' => __( 'Best Sell', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Best Sell')
-			]
-        );
-
-        $repeater->add_control(
-			'product_title',
-			[
-				'label' => __( 'Products Title', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Products Title')
-			]
-        );
-
-        $repeater->add_control(
-			'product_new_price',
-			[
-				'label' => __( 'New Price', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('New Price')
-			]
-        );
-
-        $repeater->add_control(
-			'product_old_price',
-			[
-				'label' => __( 'Old Price', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Old Price')
-			]
-        );
-
-        
-		$this->add_control(
-			'products_list',
-			[
-				'label' => __( 'All Proudcts List', 'boighor' ),
-				'type' => \Elementor\Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
-				'title_field' => 'Proudcts List Item',
-			]
-		);
-
 		$this->end_controls_section();
 
 	}
@@ -149,22 +72,30 @@ class boighor_best_sell_product_section extends \Elementor\Widget_Base {
 				<!-- Start Single Tab Content -->
 				<div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
 					<!-- Start Single Product -->
-					
-					<?php foreach( $settings['products_list'] as $item) {?>
+					<?php
+						// Define our WP Query Parameters 
+						$query_options = array(
+							'post_type' => 'product',
+							'posts_per_page' => 5, 
+							'taxonomy' => 'product_cat'  
+						);
+						$the_query = new WP_Query( $query_options ); 
+
+						while ($the_query -> have_posts()) : $the_query -> the_post(); 
+					?>
 					<div class="product product__style--3">
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="product__thumb">
-								<a class="first__img" href="<?php echo get_the_permalink()?>"><img src="<?php echo $item['best_sell_products_img1']['url']?>" alt="product image"></a>
-								<a class="second__img animation1" href="<?php echo get_the_permalink()?>"><img src="<?php echo $item['best_sell_products_img2']['url']?>" alt="product image"></a>
+								<a class="first__img" href="<?php echo get_the_permalink()?>"><?php echo get_the_post_thumbnail();?></a>
+								<a class="second__img animation1" href="<?php echo get_the_permalink()?>"><?php echo get_the_post_thumbnail();?></a>
 								<div class="hot__box">
-									<span class="hot-label"><?php echo $item['product_hot_sell']?></span>
+									<span class="hot-label">Best Sell</span>
 								</div>
 							</div>
 							<div class="product__content content--center">
-								<h4><a href="<?php echo get_the_permalink()?>"><?php echo $item['product_title']?></a></h4>
+								<h4><a href="<?php echo get_the_permalink()?>"><?php the_title()?></a></h4>
 								<ul class="prize d-flex">
-									<li><?php echo '$'. $item['product_new_price']?></li>
-									<li class="old_prize"><?php echo '$'. $item['product_old_price']?></li>
+									<li><?php woocommerce_template_single_price()?></li>
 								</ul>
 								<div class="action">
 									<div class="actions_inner">
@@ -188,7 +119,10 @@ class boighor_best_sell_product_section extends \Elementor\Widget_Base {
 							</div>
 						</div>
 					</div>
-					<?php }?>
+					<?php 
+     endwhile;
+     wp_reset_postdata();
+?>
 					<!-- Start Single Product -->
 				</div>
 				<!-- End Single Tab Content -->
