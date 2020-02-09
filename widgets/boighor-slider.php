@@ -95,7 +95,26 @@ class Main_Slider_section extends \Elementor\Widget_Base {
 				'label' => __( 'All Proudcts List', 'boighor' ),
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
-				'title_field' => 'Slider Item',
+				'default' => [
+					[
+						'slider_title_one' => __( 'Slide #1', 'boighor' ),
+						'list_content' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
+					],
+					[
+						'slider_title_two' => __( 'Slide #2', 'boighor' ),
+						'list_content' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
+					],
+					[
+						'slider_title_three' => __( 'Slide #2', 'boighor' ),
+						'list_content' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
+					],
+					
+					
+				],
+				'title_field' => '{{{ slider_title_one }}}',
+				'title_field' => '{{{ slider_title_two }}}',
+				'title_field' => '{{{ slider_title_three }}}',
+				'description' => '{{{ list_content }}}',
 			]
 		);
 
