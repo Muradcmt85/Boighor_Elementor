@@ -97,24 +97,34 @@ class Main_Slider_section extends \Elementor\Widget_Base {
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'slider_title_one' => __( 'Slide #1', 'boighor' ),
-						'list_content' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
+						'slider image' => __( 'Slide image', 'boighor' ),
+						'slider_img' => __( 'Click the edit Slide to change this image.', 'plugin-domain' ),
 					],
 					[
-						'slider_title_two' => __( 'Slide #2', 'boighor' ),
-						'list_content' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
+						'slider title one' => __( 'Slide #1', 'boighor' ),
+						'slider_title_one' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
 					],
 					[
-						'slider_title_three' => __( 'Slide #2', 'boighor' ),
-						'list_content' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
+						'slider title two' => __( 'Slide #2', 'boighor' ),
+						'slider_title_two' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
+					],
+					[
+						'slider title three' => __( 'Slide #3', 'boighor' ),
+						'slider_title_three' => __( 'Item content. Click the edit button to change this text.', 'plugin-domain' ),
+					],
+					[
+						'slider button link' => __( 'Slide button link', 'boighor' ),
+						'slider_link' => __( 'Click the edit button to change this button link.', 'plugin-domain' ),
+					],
+					[
+						'slider button text' => __( 'Slide button text', 'boighor' ),
+						'slider_button_text' => __( 'Click the edit button to change this text.', 'plugin-domain' ),
 					],
 					
 					
 				],
 				'title_field' => '{{{ slider_title_one }}}',
-				'title_field' => '{{{ slider_title_two }}}',
-				'title_field' => '{{{ slider_title_three }}}',
-				'description' => '{{{ list_content }}}',
+				
 			]
 		);
 
