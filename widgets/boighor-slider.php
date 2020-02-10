@@ -89,7 +89,7 @@ class Main_Slider_section extends \Elementor\Widget_Base {
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'slider_img' => __( "get_template_directory_uri()./assets/images/slider/bg1.jpg", 'plugin-domain' ),
+						'slider_img' =>['url'=> get_template_directory_uri().'/images/bg/2.jpg'] ,
 						'slider_title_one' => __( 'Buy <span>your </span>', 'plugin-domain' ),
 						'slider_title_two' => __( 'favourite <span>Book </span>', 'plugin-domain' ),
 						'slider_title_three' => __( 'from <span>Here </span>', 'plugin-domain' ),
@@ -97,7 +97,9 @@ class Main_Slider_section extends \Elementor\Widget_Base {
 						'slider_button_text' => __( 'Shop Here', 'plugin-domain' ),
 					],
 					[
-						'slider_img' => __( 'get_template_directory_uri()./assets/images/slider/bg1.jpg', 'plugin-domain' ),
+
+						'slider_img' =>['url'=> get_template_directory_uri().'/images/bg/1.jpg'] ,
+
 						'slider_title_one' => __( 'Buy <span>your </span>', 'plugin-domain' ),
 						'slider_title_two' => __( 'favourite <span>Book </span>', 'plugin-domain' ),
 						'slider_title_three' => __( 'from <span>Here </span>', 'plugin-domain' ),
@@ -105,7 +107,8 @@ class Main_Slider_section extends \Elementor\Widget_Base {
 						'slider_button_text' => __( 'Shop Here', 'plugin-domain' ),
 					],
 					[
-						'slider_img' => __( 'get_template_directory_uri()./assets/images/slider/bg1.jpg', 'plugin-domain' ),
+						'slider_img' =>['url'=> get_template_directory_uri().'/images/bg/2.jpg'] ,
+
 						'slider_title_one' => __( 'Buy <span>your </span>', 'plugin-domain' ),
 						'slider_title_two' => __( 'favourite <span>Book </span>', 'plugin-domain' ),
 						'slider_title_three' => __( 'from <span>Here </span>', 'plugin-domain' ),
